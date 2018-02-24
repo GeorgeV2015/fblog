@@ -22,7 +22,7 @@
                                 {!! Form::open(['route' => ['pages.update', $page->slug], 'method' => 'PUT']) !!}
                                     {{ Form::inputTextField('title', 'Title:', $page->title) }}
                                     @if($page->type === 'strElement' || $page->type === 'textElement')
-                                        {{ Form::selectField('parent_id', 'Parent Page:', $pages, $page->getParent()->title) }}
+                                        {{ Form::selectField('parent_id', 'Parent Page:', $pages, $page->parent_id) }}
                                         {{ Form::selectField('type', 'Type:', ['strElement' => 'strElement', 'textElement' => 'textElement'], $page->type) }}
                                         @if($page->type === 'strElement')
                                         {{ Form::inputTextField('content', 'Content:', $page->content) }}
