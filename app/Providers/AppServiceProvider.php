@@ -64,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('banned', function($attribute, $value, $parameters, $validator) {
             $user = User::where('email', $value)->first();
 
-            return $user->active;
+            return $user->isNotBanned();
         });
     }
 

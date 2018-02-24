@@ -5,10 +5,13 @@ namespace App;
 use \Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cog\Contracts\Ban\Bannable as BannableContract;
+use Cog\Laravel\Ban\Traits\Bannable;
 
-class User extends Authenticatable {
+class User extends Authenticatable implements BannableContract {
 
     use Notifiable;
+    use Bannable;
 
     const NO_AVATAR = 'img/no-avatar.png';
 
@@ -73,7 +76,6 @@ class User extends Authenticatable {
             return;
         }
         $this->removeAvatar();
-        //$filename = str_random(12) . $this->id . '.' . $avatar->extension();
         $filename = $avatar->store('/uploads/avatars');
         $this->avatar = $filename;
         $this->save();
@@ -108,27 +110,14 @@ class User extends Authenticatable {
         $this->attributes['is_admin'] = (bool) $value;
     }
 
-    public function setStatus($value)
-    {
-        $this->active = $value;
-        $this->save();
-    }
-
-    public function setActiveAttribute($value)
-    {
-        $this->attributes['active'] = (bool) $value;
-    }
-
-    public function isBanned()
-    {
-        return !$this->active;
-    }
-
     // Переключение статуса пользователя
     public function toggle()
     {
-        $this->active = ! $this->active;
-        $this->save();
+        if ($this->isBanned()) {
+            $this->unban();
+        } else {
+            $this->ban();
+        }
     }
 
     // Переключение роли пользователя

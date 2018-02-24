@@ -31,7 +31,6 @@
                                         <input type="file" name="avatar" id="image-upload" data-image="{{ '/' . $user->avatar }}">
                                     </div>
                                     {{ Form::checkboxField('is_admin', 'Admin', true, $user->is_admin) }}
-                                    {{ Form::checkboxField('active', 'Active', true, $user->active) }}
                                     <a href="{{ route('users.index') }}" class="btn btn-default">Back</a>
                                     {{ Form::submit('Update User', ['class' => 'btn btn-primary']) }}
                                 {!! Form::close() !!}

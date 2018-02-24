@@ -28,7 +28,6 @@
                                         <input type="file" name="avatar" id="image-upload">
                                     </div>
                                     {{ Form::checkboxField('is_admin', 'Admin', true) }}
-                                    {{ Form::checkboxField('active', 'Active', true) }}
                                     <a href="{{ route('users.index') }}" class="btn btn-default">Back</a>
                                     {{ Form::submit('Add User', ['class' => 'btn btn-primary']) }}
                                 {!! Form::close() !!}

@@ -15,7 +15,7 @@ class DashboardController extends Controller
     {
         $unpublishedComments = Comment::where('published', false)->count();
         $unpublishedPosts = Post::where('published', false)->count();
-        $bannedUsers = User::where('active', false)->count();
+        $bannedUsers = User::where('banned_at', '<>', null)->count();
         $inactivePages = Page::where('published', false)->count();
 
         return view('admin.dashboard', compact('unpublishedComments', 'unpublishedPosts', 'bannedUsers', 'inactivePages'));

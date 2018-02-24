@@ -48,7 +48,6 @@ class UsersController extends Controller {
         $user = User::add($request->all());
         $user->uploadAvatar($request->file('avatar'));
         $user->setRole($request->get('is_admin'));
-        $user->setStatus($request->get('active'));
 
         return redirect()->route('users.index')->with('status', "User '$user->name' has been created");
     }
@@ -88,7 +87,6 @@ class UsersController extends Controller {
         $user->edit($request->all());
         $user->uploadAvatar($request->file('avatar'));
         $user->setRole($request->get('is_admin'));
-        $user->setStatus($request->get('active'));
 
         return redirect()->route('users.index')->with('status', "User '$user->name' has been updated");
     }

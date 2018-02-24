@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['admin', 'forbid-banned-user']], function() {
     Route::get('/', 'DashboardController@index')->name('admin');
 
     Route::get('/categories/toggle/{slug}', 'CategoriesController@toggle')->name('categories.toggle');
@@ -43,7 +43,7 @@ Route::get('/{categorySlug}/{postSlug}', 'HomeController@show')->name('post.show
 Route::get('/search', 'SearchController@index')->name('search');
 Route::post('/mail', 'MailController@index')->name('mail');
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => ['auth', 'forbid-banned-user']], function() {
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::post('/profile', 'ProfileController@store');
     Route::post('/comment', 'CommentsController@store')->name('comment');

@@ -46,10 +46,10 @@
                                         <a href="{{ route('users.edit', $user->id) }}" class="fa fa-pencil"></a>
                                     </td>
                                     <td class="text-center">
-                                        @if($user->active)
-                                            <a href="{{ route('users.toggle', $user->id) }}" class="fa fa-gavel" title="ban"></a>
-                                        @else
+                                        @if($user->banned_at)
                                             <a href="{{ route('users.toggle', $user->id) }}" class="fa fa-thumbs-o-up" title="activate"></a>
+                                        @else
+                                            <a href="{{ route('users.toggle', $user->id) }}" class="fa fa-gavel" title="ban"></a>
                                         @endif
                                     </td>
                                     <td class="text-center">
