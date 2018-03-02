@@ -258,22 +258,27 @@ class Post extends Model {
         return $query->where('category_id', '<>', null);
     }
 
-    // получение популярных постов
-    public static function getPopularPosts($num)
+    public static function getPosts()
     {
-        return static::with('category')->published()->withCategory()->orderBy('views', 'desc')->take($num)->get();
+        return static::with('category')->published()->withCategory()->get();
+    }
+
+    // получение популярных постов
+    public static function getPopularPosts($posts, $num)
+    {
+        return $posts->sortByDesc('views')->take($num);
     }
 
     // получение featured постов
-    public static function getFeaturedPosts()
+    public static function getFeaturedPosts($posts)
     {
-        return static::with('category')->published()->withCategory()->featured()->get();
+        return $posts->where('is_featured', true);
     }
 
     // получение последних постов
-    public static function getRecentPosts($num)
+    public static function getRecentPosts($posts, $num)
     {
-        return static::with('category')->published()->withCategory()->orderByDesc('publishDate')->take($num)->get();
+        return $posts->sortByDesc('publishDate')->take($num);
     }
 
     // получение даты публикации поста в формате *** time ago

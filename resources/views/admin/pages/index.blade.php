@@ -36,13 +36,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($pages as $page)
+                            @foreach($pages as $key => $page)
                                 <tr class="odd gradeX">
                                     <td>{{ $page->id }}</td>
                                     <td>{{ $page->title }}</td>
                                     <td>
                                         @if($page->type === 'strElement' || $page->type === 'textElement')
-                                            {{ $page->getParent()->title }}
+                                            {{ $pages[$page->parent_id - 1]->title }}
                                         @endif
                                     </td>
                                     <td>{{ $page->type }}</td>

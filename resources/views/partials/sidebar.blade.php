@@ -26,7 +26,7 @@
                             @foreach($chunk as $category)
                                 <li>
                                     <a href="{{ route('category.show', $category->slug) }}">{{ $category->title }}</a>
-                                    <span>&nbsp; ({{ $category->posts()->published()->count() }})</span>
+                                    <span>&nbsp; ({{ $category->posts->count() }})</span>
                                 </li>
                             @endforeach
                         </ul>

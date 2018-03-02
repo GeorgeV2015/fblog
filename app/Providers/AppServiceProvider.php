@@ -5,10 +5,12 @@ namespace App\Providers;
 use App\Category;
 use App\Comment;
 use App\User;
+use function foo\func;
 use GuzzleHttp\Client;
 use App\Page;
 use App\Post;
 use App\Tag;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -33,16 +35,26 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('admin.includes.navbar', function($view) {
             $view->with('unpublishedComments', Comment::where('published', false)->count());
         });
+        view()->composer(['partials.sidebar', 'partials.navbar'], function($view) {
+            $categories = Cache::remember('categories', 60, function() {
+                return Category::with(['posts' => function($query) {
+                    $query->published();
+                }])->published()->get();
+            });
+            $view->with('categories', $categories);
+        });
         view()->composer('partials.sidebar', function($view) {
-            $view->with('popularPosts', Post::getPopularPosts(5));
-            $view->with('featuredPosts', Post::getFeaturedPosts());
-            $view->with('recentPosts', Post::getRecentPosts(5));
-            $view->with('categories', Category::with('posts')->published()->get());
+            $posts = Post::getPosts();
+            $view->with('popularPosts', Post::getPopularPosts($posts, 5));
+            $view->with('featuredPosts', Post::getFeaturedPosts($posts));
+            $view->with('recentPosts', Post::getRecentPosts($posts, 5));
+            /*$view->with('categories', Category::with(['posts' => function($query) {
+                $query->published();
+            }])->published()->get());*/
             $view->with('tags', Tag::published()->get());
             $view->with('archives', Post::getArchives());
         });
         view()->composer('partials.navbar', function($view) {
-            $view->with('categories', Category::published()->get());
             $view->with('pages', Page::getItemsForMenu());
         });
         // Правило валидации для ReCaptcha
@@ -75,6 +87,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if($this->app->isLocal()) {
+            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
     }
 }

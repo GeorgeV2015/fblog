@@ -38,7 +38,7 @@ class HomeController extends Controller
     {
         $post = Post::with([
             'category' => function($query) use ($categorySlug) {
-                $query->where('published', true)->where('slug', $categorySlug)->firstOrFail();
+                $query->where('published', true)->where('slug', $categorySlug);//->firstOrFail();
             },
             'author'])
             ->published()
