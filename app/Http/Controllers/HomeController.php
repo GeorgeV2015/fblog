@@ -29,6 +29,11 @@ class HomeController extends Controller
     {
         $posts = Post::with('category', 'author')->published()->ordered()->dataFilter(\request(['month', 'year']))->paginate(6);
 
+        if(\request('month') || \request('year'))
+        {
+            $posts->withPath('/?month=' . \request('month') . '&year=' . \request('year'));
+        }
+
         $title = 'FBlog Homepage';
 
         return view('home', compact('posts', 'title'));
