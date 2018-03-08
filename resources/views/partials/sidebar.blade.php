@@ -96,7 +96,7 @@
             <ul class="list-unstyled mb-0">
                 @foreach($archives as $archive)
                     <li class="mb-2">
-                        <a href="{{ url("/?month=$archive->month&year=$archive->year") }}">
+                        <a href="{{ route('archives', [$archive->year, $archive->month]) }}">
                             {{ $archive->month }} {{ $archive->year }}
                         </a>
                     </li>

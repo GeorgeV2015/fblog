@@ -187,7 +187,7 @@ class Post extends Model {
     // выборка опубликованных постов
     public function scopePublished(Builder $query)
     {
-        return $query->where('published', true);
+        return $query->where('published', true)->where('category_id', '<>', null);
     }
 
     public function scopeOrdered(Builder $query)

@@ -27,12 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category', 'author')->published()->ordered()->dataFilter(\request(['month', 'year']))->paginate(6);
-
-        if(\request('month') || \request('year'))
-        {
-            $posts->withPath('/?month=' . \request('month') . '&year=' . \request('year'));
-        }
+        $posts = Post::with('category', 'author')->published()->ordered()->paginate(6);
 
         $title = 'FBlog Homepage';
 

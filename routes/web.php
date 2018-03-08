@@ -42,6 +42,7 @@ Route::get('/user/{id}', 'UserController@index')->name('user');
 Route::get('/{categorySlug}/{postSlug}', 'HomeController@show')->name('post.show');
 Route::get('/search', 'SearchController@index')->name('search');
 Route::post('/mail', 'MailController@index')->name('mail');
+Route::get('/archives/{year}/{month}', 'ArchivesController@index')->name('archives');
 
 Route::group(['middleware' => ['auth', 'forbid-banned-user']], function() {
     Route::get('/profile', 'ProfileController@index')->name('profile');
