@@ -11,10 +11,15 @@ class SearchController extends Controller
 
     public function index()
     {
-        $posts = Post::with('category', 'author')->published()->ordered()->searchFilter(\request('search'));
+        $search = strip_tags(request('search'));
+        if (preg_replace('/\W/', '', $search) == '') {
+            return back();
+        }
+
+        $posts = Post::with('category', 'author')->published()->ordered()->searchFilter($search);
         $title = 'Search results: (' . $posts->count() . ')';
         $posts = $posts->paginate(6);
-        $posts->withPath('/search?search=' . \request('search'));
+        $posts->withPath('/search?search=' . $search);
 
         return view('home', compact('posts', 'title'));
     }
