@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         \Schema::defaultStringLength(191);
         // Компоненты для форм
-        \Form::component('inputTextField', 'components.form.text', ['name', 'label', 'value' => null]);
+        \Form::component('inputTextField', 'components.form.text', ['name', 'label', 'value' => null, 'attributes' => []]);
         \Form::component('inputPassField', 'components.form.password', ['name', 'label']);
         \Form::component('selectField', 'components.form.select', ['name', 'label', 'data', 'selected' => null, 'attributes' => []]);
         \Form::component('textareaField', 'components.form.textarea', ['name', 'label', 'value', 'attributes' => []]);

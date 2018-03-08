@@ -13,9 +13,10 @@ class MailController extends Controller {
     public function index(Request $request)
     {
         $this->validate($request, [
-            'name'                 => 'required|string|min:2|max:128',
+            'name'                 => 'required|string|min:2|max:128|regex:/^[a-zA-Z\s]+$/',
+            'phone'                => 'required|regex:/^\(?\d{3}\)?[\- ]?\d{3}[\- ]?\d{2}[\- ]?\d{2}$/',
             'email'                => 'required|email',
-            'message'              => 'required',
+            'message'              => 'required|min:10',
             'g-recaptcha-response' => 'required|recaptcha'
         ]);
         $email = User::find(1)->email;

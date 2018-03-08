@@ -11,7 +11,14 @@
                 @include('admin.includes.errors')
                 {{ Form::open(['route' => 'mail']) }}
                     {{ Form::inputTextField('name', 'Name:', old('name')) }}
-                    {{ Form::inputTextField('email', 'Email:', old('email')) }}
+                    <div class="row">
+                        <div class="col-md-5">
+                            {{ Form::inputTextField('phone', 'Phone:', old('phone'), ['placeholder' => '(xxx)-xxx-xx-xx']) }}
+                        </div>
+                        <div class="col-md-7">
+                            {{ Form::inputTextField('email', 'Email:', old('email')) }}
+                        </div>
+                    </div>
                     {{ Form::textareaField('message', 'Message:', old('message')) }}
                     <div class="g-recaptcha pull-right card" data-sitekey="6LfkD0cUAAAAAJ0ew4YjMxMj0V2oXNVZKz3D-TVo"></div>
                     {{ Form::submit('Send', ['class' => 'btn btn-primary']) }}
