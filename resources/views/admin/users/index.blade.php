@@ -40,7 +40,7 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        <img src="{{ url('/' . $user->avatar) }}" alt="{{ $user->name }}" class="image-responsive" width="100">
+                                        <img src="{{ url($user->avatar) }}" alt="{{ $user->name }}" class="image-responsive" width="100">
                                     </td>
                                     <td class="text-center">
                                         <a href="{{ route('users.edit', $user->id) }}" class="fa fa-pencil"></a>

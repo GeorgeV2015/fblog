@@ -86,7 +86,7 @@
         <h3 class="mb-4">Comments: ({{ $comments->count() }})</h3>
         @foreach($comments as $comment)
             <div class="media mb-4">
-                <img class="d-flex mr-3 rounded-circle" src="{{ ($comment->user !== null) ? $comment->user->avatar : '/img/no-avatar.png' }}" alt="{{ ($comment->user !== null) ? $comment->user->name : 'anonim' }}" width="60">
+                <img class="d-flex mr-3 rounded-circle" src="{{ ($comment->user !== null) ? url($comment->user->avatar) : '/img/no-avatar.png' }}" alt="{{ ($comment->user !== null) ? $comment->user->name : 'anonim' }}" width="60">
                 <div class="media-body">
                     <a href="{{ route('user', $comment->user->id) }}">
                         <h5 class="mt-0">{{ ($comment->user !== null) ? $comment->user->name : 'anonim' }}

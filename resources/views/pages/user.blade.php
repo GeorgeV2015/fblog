@@ -7,7 +7,7 @@
 
         <div class="card mb-4">
             <div class="card-body">
-                <img class="img-fluid rounded m-auto d-block" src="{{ url('/' . $user->avatar) }}" alt="{{ $user->name }}" width="300">
+                <img class="img-fluid rounded m-auto d-block" src="{{ url($user->avatar) }}" alt="{{ $user->name }}" width="300">
                 <ul class="nav nav-tabs mt-5">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#personal">Personal</a>
