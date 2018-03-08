@@ -13,7 +13,7 @@ class User extends Authenticatable implements BannableContract {
     use Notifiable;
     use Bannable;
 
-    const NO_AVATAR = 'img/no-avatar.png';
+    const NO_AVATAR = '/img/no-avatar.png';
 
     /**
      * The attributes that are mass assignable.

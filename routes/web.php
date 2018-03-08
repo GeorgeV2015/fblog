@@ -35,14 +35,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['adm
     Route::resource('/pages', 'PagesController');
 });
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/tags/{slug}', 'HomeController@tag')->name('tag.show');
-Route::get('/categories/{slug}', 'HomeController@category')->name('category.show');
+Route::paginate('/', 'HomeController@index')->name('home');
+Route::paginate('/tags/{slug}', 'HomeController@tag')->name('tag.show');
+Route::paginate('/categories/{slug}', 'HomeController@category')->name('category.show');
 Route::get('/user/{id}', 'UserController@index')->name('user');
 Route::get('/{categorySlug}/{postSlug}', 'HomeController@show')->name('post.show');
-Route::get('/search', 'SearchController@index')->name('search');
+Route::paginate('/search', 'SearchController@index')->name('search');
 Route::post('/mail', 'MailController@index')->name('mail');
-Route::get('/archives/{year}/{month}', 'ArchivesController@index')->name('archives');
+Route::paginate('/archives/{year}/{month}', 'ArchivesController@index')->name('archives');
 
 Route::group(['middleware' => ['auth', 'forbid-banned-user']], function() {
     Route::get('/profile', 'ProfileController@index')->name('profile');
