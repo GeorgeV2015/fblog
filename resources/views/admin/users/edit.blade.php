@@ -24,11 +24,11 @@
                                     {{ Form::inputTextField('email', 'Email:', $user->email) }}
                                     {{ Form::inputPassField('password', 'Password:') }}
                                     {{--<div class="form-group">
-                                        <img src="{{ url('/' . $user->avatar) }}" alt="{{ $user->name }}" class="image-responsive" width="300">
+                                        <img src="{{ url($user->avatar) }}" alt="{{ $user->name }}" class="image-responsive" width="300">
                                     </div>--}}
                                     <div class="form-group" id="image-preview">
                                         <label for="image-upload" id="image-label">Choose file</label>
-                                        <input type="file" name="avatar" id="image-upload" data-image="{{ '/' . $user->avatar }}">
+                                        <input type="file" name="avatar" id="image-upload" data-image="{{ $user->avatar }}">
                                     </div>
                                     {{ Form::checkboxField('is_admin', 'Admin', true, $user->is_admin) }}
                                     <a href="{{ route('users.index') }}" class="btn btn-default">Back</a>

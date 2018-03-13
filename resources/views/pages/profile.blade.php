@@ -7,11 +7,11 @@
 
         <div class="card mb-4">
             <div class="card-body">
-                {{--<img class="img-fluid rounded m-auto d-block" src="{{ url('/' . $user->avatar) }}" alt="{{ $user->name }}" width="300">--}}
+                {{--<img class="img-fluid rounded m-auto d-block" src="{{ url($user->avatar) }}" alt="{{ $user->name }}" width="300">--}}
                 {!! Form::open(['route' => 'profile', 'files' => true]) !!}
                     <div class="form-group m-auto" id="image-preview">
                         <label for="image-upload" id="image-label">Choose file</label>
-                        <input type="file" name="avatar" id="image-upload" data-image="{{ '/' . $user->avatar }}">
+                        <input type="file" name="avatar" id="image-upload" data-image="{{ $user->avatar }}">
                     </div>
                     {{ Form::inputTextField('name', 'Name:', $user->name) }}
                     {{ Form::inputTextField('email', 'Email:', $user->email) }}

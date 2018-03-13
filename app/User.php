@@ -77,7 +77,7 @@ class User extends Authenticatable implements BannableContract {
         }
         $this->removeAvatar();
         $filename = $avatar->store('/uploads/avatars');
-        $this->avatar = $filename;
+        $this->avatar = '/' . $filename;
         $this->save();
     }
 

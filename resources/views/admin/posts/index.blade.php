@@ -42,7 +42,7 @@
                                     <td>{{ ($post->category) ? $post->category->title : 'No category' }}</td>
                                     <td>{{ implode(', ', $post->tags->pluck('title')->all()) }}</td>
                                     <td>
-                                        <img src="{{ url('/' . $post->image['min']) }}" alt="{{ $post->title }}" class="image-responsive" width="150">
+                                        <img src="{{ url($post->image['min']) }}" alt="{{ $post->title }}" class="image-responsive" width="150">
                                     </td>
                                     <td class="text-center">
                                         <a href="{{ route('posts.edit', $post->slug) }}" class="fa fa-pencil"></a>

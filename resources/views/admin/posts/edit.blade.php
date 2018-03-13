@@ -22,11 +22,11 @@
                                 {!! Form::open(['route' => ['posts.update', $post->slug], 'method' => 'PUT', 'files' => true]) !!}
                                     {{ Form::inputTextField('title', 'Title:', $post->title) }}
                                     {{--<div class="form-group">
-                                        <img src="{{ url('/' . $post->image['normal']) }}" alt="{{ $post->title }}" class="image-responsive" width="300">
+                                        <img src="{{ url($post->image['normal']) }}" alt="{{ $post->title }}" class="image-responsive" width="300">
                                     </div>--}}
                                     <div class="form-group" id="image-preview">
                                         <label for="image-upload" id="image-label">Choose file</label>
-                                        <input type="file" name="image" id="image-upload" data-image="{{ '/' . $post->image['normal'] }}">
+                                        <input type="file" name="image" id="image-upload" data-image="{{ $post->image['normal'] }}">
                                     </div>
                                     <div class="form-group">
                                         <label>Current category: </label> {{ ($post->category) ? $post->category->title : 'No category' }}

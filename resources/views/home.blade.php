@@ -12,7 +12,7 @@
         @foreach($posts as $post)
             @if(isset($post->category) && $post->category->published)
                 <div class="card mb-4">
-                    <img class="card-img-top" src="{{ url('/' . $post->image['normal']) }}" alt="{{ $post->title }}">
+                    <img class="card-img-top" src="{{ url($post->image['normal']) }}" alt="{{ $post->title }}">
                     <div class="card-body">
                         <h2 class="card-title">{{ $post->title }}</h2>
                         <div class="text-center">

@@ -29,7 +29,7 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src="{{ url('/' . $post->image['normal']) }}" alt="{{ $post->title }}">
+        <img class="img-fluid rounded" src="{{ url($post->image['normal']) }}" alt="{{ $post->title }}">
 
         <hr>
 

@@ -13,7 +13,7 @@ class Post extends Model {
 
     use Sluggable;
 
-    const NO_IMAGE = 'img/no-image.png';
+    const NO_IMAGE = '/img/no-image.png';
 
     protected $fillable = ['title', 'content', 'description', 'publishDate'];
 
@@ -96,7 +96,7 @@ class Post extends Model {
 
         $minImage->save('uploads/posts/' . $minImage->filename . '-min.' . $minImage->extension);
 
-        $this->image = $filename;
+        $this->image = '/' . $filename;
         $this->save();
     }
 
